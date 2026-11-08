@@ -1,0 +1,46 @@
+# Dependencies
+node_modules/
+**/node_modules/
+.pnpm-store/
+
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+**/.env
+!**/.env.sample
+!**/.env.example
+!**/.env.*.example
+
+# Editor / OS junk
+*.swp
+*.swo
+*.swm
+*.swl
+*.swn
+*~
+*.un~
+.DS_Store
+Thumbs.db
+
+# Build / runtime artifacts
+**/dist/
+*.tar.gz
+nohup.out
+server-bootstrap/logs/bootstrap.log
+
+# Compiled binaries
+*.exe
+*.out
+CICD-tasks/workout-management-service/workout-management-service
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
+!.vscode/extensions.json

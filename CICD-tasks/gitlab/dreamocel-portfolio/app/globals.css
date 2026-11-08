@@ -1,0 +1,415 @@
+@import 'atropos/atropos.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /*--background: 0 0% 5%;*/
+    --background: 0 0% 11%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 0 0% 5%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+
+    --radius: 0.5rem;
+
+    --swiper-pagination-bottom: -50px;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-[#1b1b1b] text-foreground text-white;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+.bg-banner {
+  background-image: url("/bg-1.webp");
+  filter: blur(2);
+}
+
+.bg-banner::before,
+.bg-banner::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+}
+
+.bg-banner::before {
+  box-shadow: 571px 173px #C0013E, 1732px 143px #C0013E, 1745px 454px #C0013E, 234px 784px #C0013E, 1793px 1123px #C0013E, 1076px 504px #C0013E, 633px 601px #C0013E, 350px 630px #C0013E, 1164px 782px #C0013E, 76px 690px #C0013E, 1825px 701px #C0013E, 1646px 578px #C0013E, 544px 293px #C0013E, 445px 1061px #C0013E, 928px 47px #C0013E, 168px 1410px #C0013E, 777px 782px #C0013E, 1235px 1941px #C0013E, 104px 1690px #C0013E, 1167px 1338px #C0013E, 345px 1652px #C0013E, 1682px 1196px #C0013E, 1995px 494px #C0013E, 428px 798px #C0013E, 340px 1623px #C0013E, 605px 349px #C0013E, 1339px 1344px #C0013E, 1102px 1745px #C0013E, 1592px 1676px #C0013E, 419px 1024px #C0013E, 630px 1033px #C0013E, 1995px 1644px #C0013E, 1092px 712px #C0013E, 1355px 606px #C0013E, 622px 1881px #C0013E, 1481px 621px #C0013E, 19px 1348px #C0013E, 864px 1780px #C0013E, 442px 1136px #C0013E, 67px 712px #C0013E, 89px 1406px #C0013E, 275px 321px #C0013E, 592px 630px #C0013E, 1012px 1690px #C0013E, 1749px 23px #C0013E, 94px 1542px #C0013E, 1201px 1657px #C0013E, 1505px 692px #C0013E, 1799px 601px #C0013E, 656px 811px #C0013E, 701px 597px #C0013E, 1202px 46px #C0013E, 890px 569px #C0013E, 1613px 813px #C0013E, 223px 252px #C0013E, 983px 1093px #C0013E, 726px 1029px #C0013E, 1764px 778px #C0013E, 622px 1643px #C0013E, 174px 1559px #C0013E, 212px 517px #C0013E, 340px 505px #C0013E, 1700px 39px #C0013E, 1768px 516px #C0013E, 849px 391px #C0013E, 228px 1824px #C0013E, 1119px 1680px #C0013E, 812px 1480px #C0013E, 1438px 1585px #C0013E, 137px 1397px #C0013E, 1080px 456px #C0013E, 1208px 1437px #C0013E, 857px 281px #C0013E, 1254px 1306px #C0013E, 987px 990px #C0013E, 1655px 911px #C0013E, 1102px 1216px #C0013E, 1807px 1044px #C0013E, 660px 435px #C0013E, 299px 678px #C0013E, 1193px 115px #C0013E, 918px 290px #C0013E, 1447px 1422px #C0013E, 91px 1273px #C0013E, 108px 223px #C0013E, 146px 754px #C0013E, 461px 1446px #C0013E, 1004px 391px #C0013E, 1529px 516px #C0013E, 1206px 845px #C0013E, 347px 583px #C0013E, 1102px 1332px #C0013E, 709px 1756px #C0013E, 1972px 248px #C0013E, 1669px 1344px #C0013E, 1132px 406px #C0013E, 320px 1076px #C0013E, 126px 943px #C0013E, 263px 604px #C0013E, 1546px 692px #C0013E;
+  width: 3px;
+  height: 3px;
+  animation: animate-banner-before 150s linear infinite alternate, animate-fade-in 1s linear 2.5s normal forwards;
+}
+
+.bg-banner::after {
+  box-shadow: 571px 173px #d8a6a6, 1732px 143px #d8a6a6, 1745px 454px #d8a6a6, 234px 784px #d8a6a6, 1793px 1123px #d8a6a6, 1076px 504px #d8a6a6, 633px 601px #d8a6a6, 350px 630px #d8a6a6, 1164px 782px #d8a6a6, 76px 690px #d8a6a6, 1825px 701px #d8a6a6, 1646px 578px #d8a6a6, 544px 293px #d8a6a6, 445px 1061px #d8a6a6, 928px 47px #d8a6a6, 168px 1410px #d8a6a6, 777px 782px #d8a6a6, 1235px 1941px #d8a6a6, 104px 1690px #d8a6a6, 1167px 1338px #d8a6a6, 345px 1652px #d8a6a6, 1682px 1196px #d8a6a6, 1995px 494px #d8a6a6, 428px 798px #d8a6a6, 340px 1623px #d8a6a6, 605px 349px #d8a6a6, 1339px 1344px #d8a6a6, 1102px 1745px #d8a6a6, 1592px 1676px #d8a6a6, 419px 1024px #d8a6a6, 630px 1033px #d8a6a6, 1995px 1644px #d8a6a6, 1092px 712px #d8a6a6, 1355px 606px #d8a6a6, 622px 1881px #d8a6a6, 1481px 621px #d8a6a6, 19px 1348px #d8a6a6, 864px 1780px #d8a6a6, 442px 1136px #d8a6a6, 67px 712px #d8a6a6, 89px 1406px #d8a6a6, 275px 321px #d8a6a6, 592px 630px #d8a6a6, 1012px 1690px #d8a6a6, 1749px 23px #d8a6a6, 94px 1542px #d8a6a6, 1201px 1657px #d8a6a6, 1505px 692px #d8a6a6, 1799px 601px #d8a6a6, 656px 811px #d8a6a6, 701px 597px #d8a6a6, 1202px 46px #d8a6a6, 890px 569px #d8a6a6, 1613px 813px #d8a6a6, 223px 252px #d8a6a6, 983px 1093px #d8a6a6, 726px 1029px #d8a6a6, 1764px 778px #d8a6a6, 622px 1643px #d8a6a6, 174px 1559px #d8a6a6, 212px 517px #d8a6a6, 340px 505px #d8a6a6, 1700px 39px #d8a6a6, 1768px 516px #d8a6a6, 849px 391px #d8a6a6, 228px 1824px #d8a6a6, 1119px 1680px #d8a6a6, 812px 1480px #d8a6a6, 1438px 1585px #d8a6a6, 137px 1397px #d8a6a6, 1080px 456px #d8a6a6, 1208px 1437px #d8a6a6, 857px 281px #d8a6a6, 1254px 1306px #d8a6a6, 987px 990px #d8a6a6, 1655px 911px #d8a6a6, 1102px 1216px #d8a6a6, 1807px 1044px #d8a6a6, 660px 435px #d8a6a6, 299px 678px #d8a6a6, 1193px 115px #d8a6a6, 918px 290px #d8a6a6, 1447px 1422px #d8a6a6, 91px 1273px #d8a6a6, 108px 223px #d8a6a6, 146px 754px #d8a6a6, 461px 1446px #d8a6a6, 1004px 391px #d8a6a6, 1529px 516px #d8a6a6, 1206px 845px #d8a6a6, 347px 583px #d8a6a6, 1102px 1332px #d8a6a6, 709px 1756px #d8a6a6, 1972px 248px #d8a6a6, 1669px 1344px #d8a6a6, 1132px 406px #d8a6a6, 320px 1076px #d8a6a6, 126px 943px #d8a6a6, 263px 604px #d8a6a6, 1546px 692px #d8a6a6;
+  width: 2px;
+  height: 2px;
+  animation: animate-banner-after 100s linear infinite alternate, animate-fade-in 1s ease-out 2.5s normal forwards;
+}
+
+@keyframes animate-fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes animate-banner-before {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-2000px);
+  }
+}
+
+@keyframes animate-banner-after {
+  0% {
+    transform: scale(2) translateY(0);
+  }
+  100% {
+    transform: scale(2) translateY(-2000px);
+  }
+}
+
+.banner-name,
+.banner-text {
+  opacity: 0.2;
+  animation: bannerText 2.5s linear forwards;
+}
+
+@keyframes bannerText {
+  10%, 20%, 22%, 40%, 42%, 60%, 62%, 70%, 72%, 75%, 77%, 95% {
+    opacity: .2;
+  }
+
+  21%, 41%, 61%, 71%, 76%, 100% {
+    opacity: 1;
+  }
+}
+
+.banner-text > span {
+  transition: transform .2s cubic-bezier(0, 0.75, 0, 1);
+}
+
+.banner-text > span:hover {
+  @apply scale-125;
+}
+
+.bg-background-gradient {
+  background: radial-gradient(75% 61.2% at 92.6% 6.9%, rgb(40, 40, 40) 0%, rgb(15, 15, 15) 100%);
+}
+
+.achievement-bg {
+  @apply absolute left-0 top-0 right-0 bottom-0 -z-10 rounded-3xl;
+  background-image: url("/bg-2.jpg");
+  box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.3);
+}
+
+.bg-more {
+  background-image: url("/bg-gray.jpg");
+  background-size: cover;
+}
+
+.bg-first {
+  filter: hue-rotate(105deg);
+}
+
+.bg-second {
+  filter: grayscale(1);
+}
+
+.bg-third {
+  filter: hue-rotate(80deg) grayscale(0.3);
+}
+
+.bg-forth {
+  filter: hue-rotate(60deg) grayscale(0.4);
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.team {
+  width: auto;
+  height: 200px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 0 90px;
+  perspective: 2500px;
+}
+
+.cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-wrapper {
+  transition: all 0.5s;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.3);
+  background: rgba(255,255,255, .05);
+  border-radius: 0.5rem;
+}
+
+.team:hover .team-wrapper {
+  transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+  box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+}
+
+.shiny {
+  width: 1000px;
+  height: 50px;
+  margin-left: -300px;
+  transform: rotate(60deg);
+  background: linear-gradient(90deg, transparent 0%, rgba(200,200,200,0.2) 30%, rgba(200,200,200,0.2) 60%, transparent 100%);
+  position: absolute;
+  animation: shine 7s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0% {
+    margin-top: -300px;
+
+  }
+
+  40%, 100% {
+    margin-top: 600px;
+  }
+}
+
+.team-wrapper::before,
+.team-wrapper::after {
+  content: "";
+  opacity: 0;
+  width: 100%;
+  height: 80px;
+  transition: all 0.5s;
+  position: absolute;
+  left: 0;
+}
+
+.team-wrapper::before {
+  top: 0;
+  height: 100%;
+  background-image: linear-gradient(
+          to top,
+          transparent 46%,
+          rgba(12, 13, 19, 0.5) 68%,
+          rgba(12, 13, 19) 97%
+  );
+}
+
+.team-wrapper::after {
+  bottom: 0;
+  opacity: 1;
+  background-image: linear-gradient(
+          to bottom,
+          transparent 46%,
+          rgba(12, 13, 19, 0.5) 80%,
+          rgba(12, 13, 19, 0.7) 97%
+  );
+}
+
+.team:hover .team-wrapper::before,
+.team:hover .team-wrapper::after {
+  opacity: 1;
+}
+
+.team:hover .team-wrapper::after {
+  height: 120px;
+}
+
+.model {
+  width: 100%;
+  opacity: 0;
+  transition: all 0.5s;
+  position: absolute;
+  z-index: -1;
+}
+
+.team:hover .model {
+  opacity: 1;
+  transform: translate3d(0%, -30%, 100px);
+}
+
+.team-name {
+  opacity: 0;
+  transition: all 0.5s;
+  position: absolute;
+  z-index: 1;
+  text-shadow: 2px 4px 0 rgba(0,0,0,.8);
+  @apply whitespace-nowrap font-bold text-2xl;
+}
+
+.team:hover .team-name {
+  opacity: 1;
+  transform: translate3d(0%, -30px, 100px);
+}
+
+.swiper {
+  overflow-y: visible!important;
+}
+
+.swiper-slide {
+  width: auto!important;
+}
+
+.swiper-pagination-bullet {
+  background: #fff!important;
+}
+
+.swiper-arrow {
+  @apply cursor-pointer absolute z-20;
+  bottom: -55px;
+}
+
+.swiper-arrow.disabled {
+  @apply opacity-50 cursor-default;
+}
+
+.swiper-arrow.prev-arrow {
+  @apply left-5;
+}
+
+.swiper-arrow.next-arrow {
+  @apply right-5;
+}
+
+@media (min-width: 640px) {
+  .swiper-arrow.prev-arrow {
+    @apply left-1/2;
+    transform: translateX(calc(-50% - 200px));
+  }
+
+  .swiper-arrow.next-arrow {
+    @apply right-1/2;
+    transform: translateX(calc(50% + 200px));
+  }
+}
+
+.atropos-achievement .atropos-inner {
+  overflow: visible!important;
+}
+
+.atropos-achievement .atropos-highlight {
+  display: none;
+}
+
+.atropos-default .atropos-rotate {
+  @apply rounded-3xl overflow-hidden;
+  box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.3);
+}
+
+.back-to-top rect{
+  fill: #000000;
+}
+
+*>.intro-y {
+  z-index: 10;
+  opacity: 0;
+  position: relative;
+  transform: translateY(50px);
+  animation: .5s intro-y-animation ease-in-out .33333s;
+  animation-fill-mode: forwards;
+}
+
+*>.intro-y:nth-child(1) {
+  animation-delay: .1s;
+}
+
+*>.intro-y:nth-child(2) {
+  animation-delay: .2s;
+}
+
+*>.intro-y:nth-child(3) {
+  animation-delay: .3s;
+}
+
+*>.intro-y:nth-child(4) {
+  animation-delay: .4s;
+}
+
+@keyframes intro-y-animation {
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+.glass-card {
+  box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.3);
+  background: rgba(255,255,255, .05);
+}
+
+.custom-shadow {
+  box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.3);
+}
+
+.embed-yt {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+}
+
+.embed-yt iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hover-border {
+  @apply hover:border-b border-white border-dotted;
+}

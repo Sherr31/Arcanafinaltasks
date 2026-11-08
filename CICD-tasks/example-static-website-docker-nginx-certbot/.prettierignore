@@ -1,0 +1,10 @@
+# Files
+.editorconfig
+.gitignore
+.prettierignore
+**/*.svg
+*.md
+
+# Folders
+**/node_modules/*
+**/build/*

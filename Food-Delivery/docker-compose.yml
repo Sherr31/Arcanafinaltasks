@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:7.0
+    restart: always
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - food-net
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    restart: always
+    depends_on:
+      - mongo
+    environment:
+      PORT: 4000
+      MONGO_URL: mongodb://root:example@mongo:27017/food-delivery?authSource=admin
+      JWT_SECRET: your-super-secret-jwt-key-12345
+      SALT: 10
+      STRIPE_SECRET_KEY: sk_test_dummy
+    networks:
+      - food-net
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+      args:
+        VITE_API_URL: /api
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+    networks:
+      - food-net
+
+  admin:
+    build:
+      context: .
+      dockerfile: Dockerfile.admin
+      args:
+        VITE_API_URL: /api
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "3001:80"
+    networks:
+      - food-net
+
+networks:
+  food-net:
+    driver: bridge
+
+volumes:
+  mongo_data:

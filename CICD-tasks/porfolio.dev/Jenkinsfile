@@ -1,0 +1,94 @@
+pipeline {
+    agent any
+
+    parameters {
+        booleanParam(
+            name: 'RUN_BUILD',
+            defaultValue: true,
+            description: 'Build the Docker image'
+        )
+
+        booleanParam(
+            name: 'RUN_PUSH',
+            defaultValue: true,
+            description: 'Push the Docker image to Docker Hub'
+        )
+
+        booleanParam(
+            name: 'PUSH_LATEST',
+            defaultValue: true,
+            description: 'Also push the image with the latest tag'
+        )
+
+        string(
+            name: 'IMAGE_TAG',
+            defaultValue: '',
+            description: 'Docker image tag. Leave empty to use Jenkins BUILD_NUMBER'
+        )
+    }
+
+    environment {
+        IMAGE_NAME = "sherry31/porfolio-dev"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build Docker Image') {
+            when {
+                expression {
+                    params.RUN_BUILD
+                }
+            }
+
+            steps {
+                script {
+                    def tag = params.IMAGE_TAG?.trim()
+
+                    if (!tag) {
+                        tag = env.BUILD_NUMBER
+                    }
+
+                    env.DOCKER_TAG = tag
+
+                    def dockerImage = docker.build(
+                        "${IMAGE_NAME}:${tag}"
+                    )
+
+                    dockerImage.tag("latest")
+                }
+            }
+        }
+
+        stage('Push Docker Image') {
+            when {
+                expression {
+                    params.RUN_PUSH && params.RUN_BUILD
+                }
+            }
+
+            steps {
+                script {
+                    def dockerImage = docker.image(
+                        "${IMAGE_NAME}:${env.DOCKER_TAG}"
+                    )
+
+                    docker.withRegistry(
+                        'https://index.docker.io/v1/',
+                        'dockerhub-credentials'
+                    ) {
+                        dockerImage.push("${env.DOCKER_TAG}")
+
+                        if (params.PUSH_LATEST) {
+                            dockerImage.push("latest")
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

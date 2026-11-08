@@ -1,0 +1,50 @@
+stages:
+  - build
+  - push
+
+variables:
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_DRIVER: overlay2
+  IMAGE_NAME: $DOCKER_USERNAME/dreamocel-portfolio
+
+build_image:
+  stage: build
+  image: docker:24.0.5-cli
+
+  services:
+    - name: docker:24.0.5-dind
+      alias: docker
+
+  script:
+    - docker info
+    - docker build --progress=plain -t "$IMAGE_NAME:$CI_COMMIT_SHORT_SHA" .
+    - docker save "$IMAGE_NAME:$CI_COMMIT_SHORT_SHA" -o image.tar
+
+  artifacts:
+    paths:
+      - image.tar
+    expire_in: 1 hour
+
+push_image:
+  stage: push
+  image: docker:24.0.5-cli
+
+  services:
+    - name: docker:24.0.5-dind
+      alias: docker
+
+  needs:
+    - job: build_image
+      artifacts: true
+
+  script:
+    - docker info
+    - docker load -i image.tar
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - docker push "$IMAGE_NAME:$CI_COMMIT_SHORT_SHA"
+    - docker tag "$IMAGE_NAME:$CI_COMMIT_SHORT_SHA" "$IMAGE_NAME:latest"
+    - docker push "$IMAGE_NAME:latest"
+
+  rules:
+    - if: '$CI_COMMIT_BRANCH'

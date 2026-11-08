@@ -1,0 +1,27 @@
+name: Permissions
+on:
+  workflow_dispatch:
+
+jobs:
+  # ❌ PLEASE DO NOT USE THIS APPROACH!
+  auth-to-aws-static:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: "Configure AWS Credentials using static key"
+        uses: aws-actions/configure-aws-credentials@b47578312673ae6fa5b5096b330d9fbac3d116df # v4.2.1
+        with:
+          aws-region: us-east-2
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+  # ✅ PLEASE USE THIS APPROACH INSTEAD!
+  auth-to-aws-oidc:
+    runs-on: ubuntu-24.04
+    permissions:
+      id-token: write # This is required for requesting the JWT for OIDC auth to AWS
+    steps:
+      - name: "Configure AWS Credentials - Action for GitHub Actions"
+        uses: aws-actions/configure-aws-credentials@b47578312673ae6fa5b5096b330d9fbac3d116df # v4.2.1
+        with:
+          aws-region: us-east-2
+          role-to-assume: arn:aws:iam::917774925227:role/github-actions-role
